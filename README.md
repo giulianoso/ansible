@@ -1,1 +1,1 @@
-Anarquia Punk!
+Ramones & Motorhead até morrer!
