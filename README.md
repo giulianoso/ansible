@@ -1,1 +1,1 @@
-Ramones & Motorhead até morrer!
+Punk Rock / Hardcore
