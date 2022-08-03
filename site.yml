@@ -1,0 +1,35 @@
+---
+
+- hosts: web_servers
+  become: true
+  tasks:
+  - name: instala apache e php em servidores ubuntu
+    apt:
+      name:
+        - apache2
+        - libapache2-mod-php
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: db_servers
+  become: true
+  tasks:
+  - name: instala maria-db em servidores ubuntu
+    apt:
+      name:
+        - mariadb-server
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: file_servers
+  become: true
+  tasks:
+  - name: instala samba em servidores ubuntu
+    apt:
+      name:
+        - samba
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+...
+
