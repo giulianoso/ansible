@@ -1,0 +1,73 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Atualiza Servidores Fedora
+    dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "Fedora"
+
+  - name: Atualiza Servidores Ubuntu
+    apt:
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: web_servers
+  become: true
+  tasks:
+
+  - name: Instala Apache em Servidores Fedora
+    dnf:
+      name:
+        - httpd
+        - php
+      state: latest
+    when: ansible_distribution == "Fedora"
+
+  - name: Instala Apache em Servidores Ubuntu
+    apt:
+      name:
+        - apache2
+        - libapache2-mod-php
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: db_servers
+  become: true
+  tasks:
+
+  - name: Instala Maria-DB em Servidores Fedora
+    dnf: 
+      name:
+        - mariadb
+      state: latest
+    when: ansible_distribution == "Fedora"
+
+  - name: Instala Marida-DB em Servidores Ubuntu
+    apt:
+      name:
+        - mariadb-server
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: file_servers
+  become: true
+  tasks:
+
+  - name: Instala Samba em Servidores Fedora
+    dnf:
+      name:
+        - samba
+      state: latest
+    when: ansible_distribution == "Fedora"
+
+  - name: Instala Samba em Servidores Ubuntu
+    apt:
+      name:
+        - samba
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+...
