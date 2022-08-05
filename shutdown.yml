@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  name: Desliga todos os servidores 
+  tasks:
+
+  - name:
+    command: /sbin/shutdown -h now
+
+...  
