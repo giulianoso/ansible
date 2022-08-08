@@ -15,8 +15,21 @@
     tags: always
     apt:
       update_cache: yes
-      upgrade: safe
     when: ansible_distribution == "Ubuntu"
+
+- hosts: workstations
+  become: true
+  tasks:
+
+  - name: Instala Unzip
+    package: 
+      name: unzip
+
+  - name: Instala Terraform
+    unarchive: 
+      src: https://releases.hashicorp.com/terraform/1.2.6/terraform_1.2.6_linux_amd64.zip
+      dest: /usr/local/bin
+      remote_src: yes
 
 - hosts: web_servers
   become: true
@@ -39,6 +52,12 @@
         - libapache2-mod-php
       state: latest
     when: ansible_distribution == "Ubuntu"
+
+  - name: Copia arquivo html padrão para o site
+    tags: apache,apache2,httpd
+    copy: 
+      src: default_site.html
+      dest: /var/www/html/index.html
 
 - hosts: db_servers
   become: true

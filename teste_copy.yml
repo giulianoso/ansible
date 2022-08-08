@@ -1,0 +1,18 @@
+---
+
+- hosts: 192.168.13.11
+  become: true
+  tasks:
+
+  - name: Instala Unzip
+    package:
+      name: unzip
+
+  - name: Instala Terraform
+    unarchive:
+      src: https://releases.hashicorp.com/terraform/1.2.6/terraform_1.2.6_linux_amd64.zip
+      dest: /usr/local/bin
+      remote_src: yes
+
+...
+

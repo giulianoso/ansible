@@ -1,0 +1,13 @@
+---
+
+- hosts: 192.168.13.11
+  become: true
+  tasks:
+
+  - name: Inicia e habilita o serviço apache2
+    service:
+      name: apache2
+      state: started
+      enabled: yes
+
+... 
