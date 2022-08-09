@@ -1,0 +1,4 @@
+- name: add ssh key for rancid
+  authorized_key:
+   user: rancid
+   key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIusQREcoJ+QkiKFnIhcX8o9ZgUHF5ZaOP03L3taqzCK new_ansible"

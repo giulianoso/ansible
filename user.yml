@@ -1,0 +1,24 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: cria usuario rancid
+    user:
+      name: rancid
+      groups: root
+
+
+  - name: adiciona chave ssh para usuario rancid
+    authorized_key: 
+      user: rancid
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIusQREcoJ+QkiKFnIhcX8o9ZgUHF5ZaOP03L3taqzCK new_ansible"
+
+
+  - name: adiciona arquivo sudoers para rancid
+    copy: 
+      src: sudoer_rancid
+      dest: /etc/sudoers.d/rancid
+
+...
